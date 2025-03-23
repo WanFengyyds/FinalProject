@@ -6,13 +6,17 @@
         font-family: 'Arial', sans-serif;
     }
     
+    a {
+        text-decoration: none;
+    }
+
     body {
         background: linear-gradient(135deg, #000000, #1a1a1a, #333333);
         color: #ffffff;
         min-height: 100vh;
     }
     
-    /* Navigation */
+    /* Navigation on home page  */
     nav {
         display: flex;
         justify-content: space-between;
@@ -28,6 +32,16 @@
         font-size: 28px;
         font-weight: 700;
         letter-spacing: 3px;
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    .logo a{
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        color: #ffffff;
+        text-decoration: none;
     }
     
     .nav-links {
@@ -54,8 +68,20 @@
         font-size: 20px;
         cursor: pointer;
     }
+
+    .login-icon {
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .login-icon a{
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 16px;
+        transition: all 0.3s ease;
+    }
     
-    /* Hero Section */
+    /* Hero Section on home page */
     .hero {
         height: 100vh;
         display: flex;
@@ -121,7 +147,7 @@
         transform: translateY(-3px);
     }
     
-    /* Featured Categories */
+    /* Featured Categories on home page */
     .featured-categories {
         padding: 80px 5%;
         text-align: center;
@@ -178,7 +204,7 @@
         transform: scale(1.05);
     }
     
-    /* Trending Products */
+    /* Trending Products on home page */
     .trending-products {
         padding: 80px 5%;
         text-align: center;
@@ -236,7 +262,7 @@
         background-color: #e6e6e6;
     }
     
-    /* Newsletter */
+    /* Newsletter on home page */
     .newsletter {
         padding: 80px 5%;
         text-align: center;
@@ -315,8 +341,282 @@
         color: #999999;
         font-size: 14px;
     }
+
+    /* Import Poppins font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Apply Poppins font to the entire body */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #000000, #1a1a1a, #333333);
+    color: #ffffff;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* Login Section */
+.login-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+}
+
+.login-container {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    backdrop-filter: blur(10px); /* Adds a blur effect to the background */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+}
+
+.login-container h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-weight: 600; /* Semi-bold */
+}
+
+.login-form .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.login-form label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #cccccc;
+    font-weight: 400; /* Regular */
+}
+
+.login-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s ease;
+}
+
+.login-form input::placeholder {
+    color: #999999;
+}
+
+.login-form input:focus {
+    border-color: #ffffff; /* Highlight input on focus */
+    outline: none;
+}
+
+.login-form .btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600; /* Semi-bold */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Smooth button hover animation */
+.login-form .btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    transition: transform 0.5s ease;
+}
+
+.login-form .btn:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.login-form .btn:hover {
+    background-color: #e6e6e6;
+    transform: translateY(-3px); /* Slight lift on hover */
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2); /* Subtle shadow */
+}
+
+.register-link {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #cccccc;
+    font-weight: 400; /* Regular */
+}
+
+.register-link a {
+    color: #ffffff;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.register-link a:hover {
+    color: #e6e6e6;
+}
+
+/* Password Wrapper */
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding-right: 40px; /* Space for the button */
+}
+
+.show-password-btn {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #cccccc;
+    transition: color 0.3s ease;
+}
+
+.show-password-btn:hover {
+    color: #ffffff;
+}
+
+
+/* Register Section */
+.register-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+}
+
+.register-container {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    backdrop-filter: blur(10px); /* Adds a blur effect to the background */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+}
+
+.register-container h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-weight: 600; /* Semi-bold */
+}
+
+.register-form .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.register-form label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #cccccc;
+    font-weight: 400; /* Regular */
+}
+
+.register-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s ease;
+}
+
+.register-form input::placeholder {
+    color: #999999;
+}
+
+.register-form input:focus {
+    border-color: #ffffff; /* Highlight input on focus */
+    outline: none;
+}
+
+.register-form .btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600; /* Semi-bold */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Smooth button hover animation */
+.register-form .btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background-color: rgba(0, 0, 0, 0.1);
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    transition: transform 0.5s ease;
+}
+
+.register-form .btn:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.register-form .btn:hover {
+    background-color: #e6e6e6;
+    transform: translateY(-3px); /* Slight lift on hover */
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2); /* Subtle shadow */
+}
+
+.login-link {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #cccccc;
+    font-weight: 400; /* Regular */
+}
+
+.login-link a {
+    color: #ffffff;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.login-link a:hover {
+    color: #e6e6e6;
+}
     
-    /* Responsive Design */
+    /* Responsive Design on home page */
     @media (max-width: 768px) {
         .nav-links {
             display: none;
