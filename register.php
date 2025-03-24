@@ -56,6 +56,33 @@
         </div>
     </section>
 
+    <?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    
+    $mysqli = new mysqli('localhost', 'root', '', 'fearofgod');
+
+    if ($mysqli->connect_error) {
+        die("Connection failed: " . $mysqli->connect_error);
+    }
+    
+    // Generate a username from email
+    $username = strstr($email, '@', true);
+    
+    // Direct INSERT without hashing
+    $sql = "INSERT INTO users (username, email, pwd, role) VALUES ('$username', '$email', '$password', 'user')";
+    
+    if ($mysqli->query($sql) === TRUE) {
+        echo "<script>alert('Registration successful!'); window.location.href='login.html';</script>";
+    } else {
+        echo "<script>alert('Error during registration: " . $mysqli->error . "');</script>";
+    }
+    
+    $mysqli->close();
+}
+    ?>
+
     <!-- Footer -->
     <footer>
         <div class="footer-grid">
