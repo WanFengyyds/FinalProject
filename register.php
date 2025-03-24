@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
     // Generate a username from email
-    $username = strstr($email, '@', true);
+    $username = explode('@', $email)[0];
     
     // Direct INSERT without hashing
     $sql = "INSERT INTO users (username, email, pwd, role) VALUES ('$username', '$email', '$password', 'user')";
