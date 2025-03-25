@@ -1,1 +1,2 @@
-# 📄 How to write a good README
+# Fear Of God E-Commerce Project
+> *School final project about creating an E-Commerce*
