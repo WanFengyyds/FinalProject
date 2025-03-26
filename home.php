@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- Login Session -->
+    <?php
+        session_start();
+        // Check login status
+        $logged_in = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
+        $username = $logged_in ? $_SESSION['username'] : '';
+    ?>
+
     <!-- Navigation -->
     <nav>
         <div class="logo">FEAR OF GOD</div>
@@ -19,7 +28,16 @@
             <li><a href="#">About</a></li>
         </ul>
         <div class="login-icon">
-            <a href="login.html">Login</a>
+            <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
+                <?php if ($_SESSION['role'] === 'admin'): ?>
+                    <a href="dashboard.php">Dashboard</a> |
+                <?php else: ?>
+                    <a href="account.php">My Account</a> |
+                <?php endif; ?>
+                <a href="logout.php">Logout</a>
+            <?php else: ?>
+                <a href="login.php">Login</a>
+            <?php endif; ?>
         </div>
     </nav>
     

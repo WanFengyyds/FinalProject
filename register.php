@@ -10,12 +10,12 @@
     <!-- Navigation -->
     <nav>
         <div class="logo">
-            <a href="index.html">
+            <a href="home.php">
                 FEAR OF GOD
             </a>       
         </div>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="home.php">Home</a></li>
             <li><a href="#">Essentials</a></li>
             <li><a href="#">Collections</a></li>
             <li><a href="#">Accessories</a></li>
@@ -23,7 +23,7 @@
             <li><a href="#">About</a></li>
         </ul>
         <div class="login-icon">
-            <a href="login.html">Login</a>
+            <a href="login.php">Login</a>
         </div>
     </nav>
 
@@ -52,7 +52,7 @@
                 </div>
                 <button type="submit" class="btn">Register</button>
             </form>
-            <p class="login-link">Already have an account? <a href="login.html">Login here</a>.</p>
+            <p class="login-link">Already have an account? <a href="login.php">Login here</a>.</p>
         </div>
     </section>
 
@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO users (username, email, pwd, role) VALUES ('$username', '$email', '$password', 'user')";
     
     if ($mysqli->query($sql) === TRUE) {
-        echo "<script>alert('Registration successful!'); window.location.href='login.html';</script>";
+        echo "<script>alert('Registration successful!'); window.location.href='login.php';</script>";
     } else {
         echo "<script>alert('Error during registration: " . $mysqli->error . "');</script>";
     }

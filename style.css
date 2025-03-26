@@ -615,6 +615,11 @@ body {
 .login-link a:hover {
     color: #e6e6e6;
 }
+
+/* Dashboard Section*/
+
+
+
     
     /* Responsive Design on home page */
     @media (max-width: 768px) {

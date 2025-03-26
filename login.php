@@ -10,12 +10,12 @@
     <!-- Navigation -->
     <nav>
         <div class="logo">
-            <a href="index.html">
+            <a href="home.php">
                 FEAR OF GOD
             </a> 
         </div>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="home.php">Home</a></li>
             <li><a href="#">Essentials</a></li>
             <li><a href="#">Collections</a></li>
             <li><a href="#">Accessories</a></li>
@@ -23,7 +23,7 @@
             <li><a href="#">About</a></li>
         </ul>
         <div class="login-icon">
-            <a href="login.html">Login</a>
+            <a href="login.php">Login</a>
         </div>
     </nav>
 
@@ -31,7 +31,7 @@
     <section class="login-section">
         <div class="login-container">
             <h2>Login to Your Account</h2>
-            <form class="login-form">
+            <form class="login-form" action="login.php" method="POST">
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="Enter your email" required>
@@ -48,6 +48,40 @@
             <p class="register-link">Don't have an account yet? <a href="register.php">Click here</a> to register.</p>
         </div>
     </section>
+
+    <?php
+    session_start();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    
+    $mysqli = new mysqli('localhost', 'root', '', 'fearofgod');
+
+    if ($mysqli->connect_error) {
+        die("Connection failed: " . $mysqli->connect_error);
+    }
+    
+    // Generate a username from email
+    $username = explode('@', $email)[0];
+    
+    // Direct INSERT without hashing
+    $sql = "SELECT * FROM users WHERE email='$email' AND pwd='$password'";
+    $result = $mysqli->query($sql);
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+        $_SESSION['user_id'] = $user['user_id'];
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['email'] = $user['email'];
+        $_SESSION['role'] = $user['role']; 
+        $_SESSION['logged_in'] = true;
+        echo  "<script>alert('Login successfuly!'); window.location.href='home.php';</script>";
+    }else{
+        echo "<script>alert('Wrong Account or Password');</script>";
+    }
+    
+    $mysqli->close();
+}
+    ?>
 
     <!-- Footer -->
     <footer>
