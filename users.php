@@ -1,27 +1,24 @@
 <?php
+// Start session and check admin privileges
 session_start();
-
-// Check if user is logged in and is admin
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SESSION['role'] !== 'admin') {
     header("Location: login.php");
     exit;
 }
 
-// Database connection
+// Database connection (adjust according to your setup)
 $mysqli = new mysqli('localhost', 'root', '', 'fearofgod');
+
 
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
-
-// Fetch all products
-$sql = "SELECT * FROM product";
+// Fetch all users from database
+$sql = "SELECT user_id, username, email, role, created_at FROM users ";
 $result = $mysqli->query($sql);
-
-$products = [];
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $products[] = $row;
+        $users[] = $row;
     }
 }
 
@@ -58,41 +55,33 @@ $mysqli->close();
     <!-- Products Content -->
     <section class="products-container">
         <div class="products-header">
-            <h1 class="products-title">Product Management</h1>
-            <a href="add_product.php" class="add-product-btn">Add New Product</a>
+            <h1 class="products-title">User Management</h1>
+            <a href="add_product.php" class="add-product-btn">Add New User</a>
         </div>
 
-        <?php if (!empty($products)): ?>
+        <?php if (!empty($users)): ?>
             <table class="products-table">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th>Stock</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Created At</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($products as $product): ?>
+                    <?php foreach ($users as $user): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($product['product_id']); ?></td>
+                            <td><?php echo $user['user_id']; ?></td>
+                            <td><?php echo $user['username']; ?></td>
+                            <td><?php echo $user['email']; ?></td>
+                            <td><?php echo $user['role']; ?></td>
+                            <td><?php echo $user['created_at']; ?></td>
                             <td>
-                                <?php if (!empty($product['image_url'])): ?>
-                                    <img src="<?php echo $product['image_url'] ?>" alt="<?php echo $product['name'] ?>" class="product-image">
-                                <?php else: ?>
-                                    No Image
-                                <?php endif; ?>
-                            </td>
-                            <td><?php echo $product['name']; ?></td>
-                            <td><?php echo substr($product['description'], 0, length: 50); ?>...</td>
-                            <td>$<?php echo number_format($product['price'], 2); ?></td>
-                            <td><?php echo $product['stock_quantity']; ?></td>
-                            <td>
-                                <button class="action-btn edit-btn" onclick="window.location.href='edit_product.php?id=<?php echo $product['product_id']; ?>'">Edit</button>
-                                <button class="action-btn delete-btn" onclick="confirmDelete(<?php echo $product['product_id']; ?>)">Delete</button>
+                                <button class="action-btn edit-btn" onclick="window.location.href='edit_user.php?id=<?php echo $user['user_id']; ?>'">Edit</button>
+                                <button class="action-btn delete-btn" onclick="confirmDelete(<?php echo $user['user_id']; ?>)">Delete</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -110,7 +99,7 @@ $mysqli->close();
     <script>
         function confirmDelete(productId) {
             if (confirm('Are you sure you want to delete this product?')) {
-                window.location.href = 'delete_product.php?id=' + productId;
+                window.location.href = 'delete_user.php?id=' + productId;
             }
         }
     </script>

@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Fear of God</title>
     <link rel="stylesheet" href="style.css"> <!-- Link to your existing CSS file -->
 </head>
+
 <body>
     <!-- Navigation -->
     <nav>
         <div class="logo">
             <a href="home.php">
                 FEAR OF GOD
-            </a>       
+            </a>
         </div>
         <ul class="nav-links">
             <li><a href="home.php">Home</a></li>
@@ -57,30 +59,30 @@
     </section>
 
     <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    
-    $mysqli = new mysqli('localhost', 'root', '', 'fearofgod');
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
 
-    if ($mysqli->connect_error) {
-        die("Connection failed: " . $mysqli->connect_error);
+        $mysqli = new mysqli('localhost', 'root', '', 'fearofgod');
+
+        if ($mysqli->connect_error) {
+            die("Connection failed: " . $mysqli->connect_error);
+        }
+
+        // Generate a username from email
+        $username = explode('@', $email)[0];
+
+        // Direct INSERT without hashing
+        $sql = "INSERT INTO users (username, email, pwd, role) VALUES ('$username', '$email', '$password', 'user')";
+
+        if ($mysqli->query($sql) === TRUE) {
+            echo "<script>alert('Registration successful!'); window.location.href='login.php';</script>";
+        } else {
+            echo "<script>alert('Error during registration: " . $mysqli->error . "');</script>";
+        }
+
+        $mysqli->close();
     }
-    
-    // Generate a username from email
-    $username = explode('@', $email)[0];
-    
-    // Direct INSERT without hashing
-    $sql = "INSERT INTO users (username, email, pwd, role) VALUES ('$username', '$email', '$password', 'user')";
-    
-    if ($mysqli->query($sql) === TRUE) {
-        echo "<script>alert('Registration successful!'); window.location.href='login.php';</script>";
-    } else {
-        echo "<script>alert('Error during registration: " . $mysqli->error . "');</script>";
-    }
-    
-    $mysqli->close();
-}
     ?>
 
     <!-- Footer -->
@@ -136,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
         const confirmPasswordInput = document.getElementById('confirm-password');
 
-        togglePassword.addEventListener('click', function () {
+        togglePassword.addEventListener('click', function() {
             // Toggle the type attribute
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
@@ -145,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             this.textContent = type === 'password' ? '👁️' : '🙈';
         });
 
-        toggleConfirmPassword.addEventListener('click', function () {
+        toggleConfirmPassword.addEventListener('click', function() {
             // Toggle the type attribute
             const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             confirmPasswordInput.setAttribute('type', type);
@@ -165,4 +167,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     </script>
 </body>
+
 </html>

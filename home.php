@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fear Of God | Premium Essentials</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <!-- Login Session -->
     <?php
-        session_start();
-        // Check login status
-        $logged_in = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
-        $username = $logged_in ? $_SESSION['username'] : '';
+    session_start();
+    // Check login status
+    $logged_in = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
+    $username = $logged_in ? $_SESSION['username'] : '';
     ?>
 
     <!-- Navigation -->
@@ -40,7 +42,7 @@
             <?php endif; ?>
         </div>
     </nav>
-    
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
@@ -49,24 +51,24 @@
             <a href="#" class="btn">Shop Essentials</a>
         </div>
     </section>
-    
 
 
-    
+
+
     <!-- Trending Products -->
-    
+
 
 
 
     <section class="trending-products">
         <h2 class="section-title">Bestselling Essentials</h2>
         <div class="products-grid">
-        <?php
-            $mysqli = new mysqli("localhost","root","","fearofgod");
+            <?php
+            $mysqli = new mysqli("localhost", "root", "", "fearofgod");
             $sql = "SELECT * FROM product ORDER BY RAND() LIMIT 4";
             $result = $mysqli->query($sql);
             if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
+                while ($row = $result->fetch_assoc()) {
                     echo '<div class="product-card">';
                     echo '<img src="' . $row["image_url"] . '" alt="' . $row["name"] . '" class="product-img">';
                     echo '<div class="product-details">';
@@ -76,8 +78,8 @@
                     echo '</div></div>';
                 }
             }
-        ?>
-    <!--
+            ?>
+            <!--
             <div class="product-card">
                 <img src="img/FearOfGod_Essentials_Hoodie_White.webp" alt="Essentials Hoodie" class="product-img">
                 <div class="product-details">
@@ -114,9 +116,9 @@
             -->
         </div>
     </section>
-    
-    
-    
+
+
+
     <!-- Newsletter -->
     <section class="newsletter">
         <h2 class="section-title">Join Our Community</h2>
@@ -126,7 +128,7 @@
             <button type="submit" class="btn">Subscribe</button>
         </form>
     </section>
-    
+
     <!-- Footer -->
     <footer>
         <div class="footer-grid">
@@ -173,4 +175,5 @@
         </div>
     </footer>
 </body>
+
 </html>

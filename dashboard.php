@@ -5,7 +5,7 @@ session_start();
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SESSION['role'] !== 'admin') {
     header("Location: login.php");
     exit;
-}else {
+} else {
     $mysqli = new mysqli('localhost', 'root', '', 'fearofgod');
 
     if ($mysqli->connect_error) {
@@ -55,12 +55,14 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SESSI
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Fear of God</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav>
@@ -70,7 +72,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SESSI
         <ul class="nav-links">
             <li><a href="dashboard.php">Dashboard</a></li>
             <li><a href="products.php">Products</a></li>
-            <li><a href="users.php">Users</a></li>
+            <li><a href="user.php">Users</a></li>
             <li><a href="orders.php">Orders</a></li>
         </ul>
         <div class="login-icon">
@@ -81,46 +83,46 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SESSI
     <?php
 
     ?>
-    
+
     <!-- Dashboard Content -->
     <section class="dashboard">
         <div class="dashboard-header">
             <h1 class="dashboard-title">Admin Dashboard</h1>
         </div>
-        
+
         <!-- Stats Cards -->
         <div class="stats-grid">
             <div class="stat-card">
                 <?php
-                    echo "<div class='stat-value'>$user_count</div>";
-                    echo "<div class='stat-label'>TOTAL USERS</div>";
-                ?>
-                
-            </div>
-            
-            <div class="stat-card">
-                <?php
-                    echo "<div class='stat-value'>$total_orders</div>";
-                    echo "<div class='stat-label'>TOTAL ORDERS</div>";
-                ?>
-            </div>
-            
-            <div class="stat-card">
-                <?php
-                    echo "<div class='stat-value'>$orders_sum$</div>";
-                    echo "<div class='stat-label'>TOTAL SALES</div>";
+                echo "<div class='stat-value'>$user_count</div>";
+                echo "<div class='stat-label'>TOTAL USERS</div>";
                 ?>
 
             </div>
-            
+
             <div class="stat-card">
                 <?php
-                    echo "<div class='stat-value'>$product_count</div>";
-                    echo "<div class='stat-label'>TOTAL PRODUCTS</div>";
+                echo "<div class='stat-value'>$total_orders</div>";
+                echo "<div class='stat-label'>TOTAL ORDERS</div>";
+                ?>
+            </div>
+
+            <div class="stat-card">
+                <?php
+                echo "<div class='stat-value'>$orders_sum$</div>";
+                echo "<div class='stat-label'>TOTAL SALES</div>";
+                ?>
+
+            </div>
+
+            <div class="stat-card">
+                <?php
+                echo "<div class='stat-value'>$product_count</div>";
+                echo "<div class='stat-label'>TOTAL PRODUCTS</div>";
                 ?>
             </div>
         </div>
-        
+
         <!-- Main Content Grid -->
 
         <div class="action-boxes">
@@ -129,33 +131,34 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SESSI
                 <h3>Product List</h3>
                 <p>View and manage all products</p>
             </div>
-            
+
             <div class="action-box" onclick="window.location.href='add_product.php'">
                 <i>➕</i>
                 <h3>Add Product</h3>
                 <p>Create new product listings</p>
             </div>
-            
+
             <div class="action-box" onclick="window.location.href='users.php'">
                 <i>👥</i>
                 <h3>User Management</h3>
                 <p>Manage user accounts</p>
             </div>
-            
+
             <div class="action-box" onclick="window.location.href='orders.php'">
                 <i>📦</i>
                 <h3>Order Management</h3>
                 <p>View and process orders</p>
             </div>
         </div>
-        
+
     </section>
 
     <!-- Footer -->
-    
-        <div class="copyright">
-            <p>© 2025 FEAR OF GOD ADMIN DASHBOARD. All Rights Reserved.</p>
-        </div>
+
+    <div class="copyright">
+        <p>© 2025 FEAR OF GOD ADMIN DASHBOARD. All Rights Reserved.</p>
+    </div>
     </footer>
 </body>
+
 </html>

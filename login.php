@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Fear of God</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav>
         <div class="logo">
             <a href="home.php">
                 FEAR OF GOD
-            </a> 
+            </a>
         </div>
         <ul class="nav-links">
             <li><a href="home.php">Home</a></li>
@@ -51,36 +53,36 @@
 
     <?php
     session_start();
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    
-    $mysqli = new mysqli('localhost', 'root', '', 'fearofgod');
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
 
-    if ($mysqli->connect_error) {
-        die("Connection failed: " . $mysqli->connect_error);
+        $mysqli = new mysqli('localhost', 'root', '', 'fearofgod');
+
+        if ($mysqli->connect_error) {
+            die("Connection failed: " . $mysqli->connect_error);
+        }
+
+        // Generate a username from email
+        $username = explode('@', $email)[0];
+
+        // Direct INSERT without hashing
+        $sql = "SELECT * FROM users WHERE email='$email' AND pwd='$password'";
+        $result = $mysqli->query($sql);
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
+            $_SESSION['user_id'] = $user['user_id'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['role'] = $user['role'];
+            $_SESSION['logged_in'] = true;
+            echo  "<script>alert('Login successfuly!'); window.location.href='home.php';</script>";
+        } else {
+            echo "<script>alert('Wrong Account or Password');</script>";
+        }
+
+        $mysqli->close();
     }
-    
-    // Generate a username from email
-    $username = explode('@', $email)[0];
-    
-    // Direct INSERT without hashing
-    $sql = "SELECT * FROM users WHERE email='$email' AND pwd='$password'";
-    $result = $mysqli->query($sql);
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-        $_SESSION['user_id'] = $user['user_id'];
-        $_SESSION['username'] = $user['username'];
-        $_SESSION['email'] = $user['email'];
-        $_SESSION['role'] = $user['role']; 
-        $_SESSION['logged_in'] = true;
-        echo  "<script>alert('Login successfuly!'); window.location.href='home.php';</script>";
-    }else{
-        echo "<script>alert('Wrong Account or Password');</script>";
-    }
-    
-    $mysqli->close();
-}
     ?>
 
     <!-- Footer -->
@@ -134,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         const togglePassword = document.getElementById('togglePassword');
         const passwordInput = document.getElementById('password');
 
-        togglePassword.addEventListener('click', function () {
+        togglePassword.addEventListener('click', function() {
             // Toggle the type attribute
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
@@ -144,4 +146,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         });
     </script>
 </body>
+
 </html>
