@@ -152,45 +152,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SESSI
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-column">
-                <h4>Admin</h4>
-                <ul>
-                    <li><a href="dashboard.php">Dashboard</a></li>
-                    <li><a href="products.php">Products</a></li>
-                    <li><a href="users.php">Users</a></li>
-                    <li><a href="orders.php">Orders</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Reports</h4>
-                <ul>
-                    <li><a href="#">Sales</a></li>
-                    <li><a href="#">Traffic</a></li>
-                    <li><a href="#">Products</a></li>
-                    <li><a href="#">Customers</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Settings</h4>
-                <ul>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Security</a></li>
-                    <li><a href="#">Notifications</a></li>
-                    <li><a href="#">Preferences</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">Documentation</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Feedback</a></li>
-                </ul>
-            </div>
-        </div>
+    
         <div class="copyright">
             <p>© 2025 FEAR OF GOD ADMIN DASHBOARD. All Rights Reserved.</p>
         </div>

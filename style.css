@@ -706,7 +706,7 @@ body {
 .products-container {
     max-width: 1200px;
     margin: 40px auto;
-    padding: 0 20px;
+    padding: 0 20px; 
 }
 
 .products-header {
@@ -808,6 +808,136 @@ body {
 
 .delete-btn:hover {
     background-color: rgba(255, 59, 48, 0.3);
+}
+
+.edit-product-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+    border-radius: 5px;
+}
+
+.edit-product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.edit-product-title {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.back-btn {
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.back-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.edit-product-form {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.form-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.image-preview {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.btn-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.submit-btn {
+    padding: 12px 25px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.cancel-btn {
+    padding: 12px 25px;
+    background-color: rgba(255, 59, 48, 0.2);
+    color: #ff3b30;
+    border: 1px solid rgba(255, 59, 48, 0.3);
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+}
+
+.cancel-btn:hover {
+    background-color: rgba(255, 59, 48, 0.3);
+    transform: translateY(-2px);
+}
+
+.error-message {
+    color: #ff3b30;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: rgba(255, 59, 48, 0.1);
+    border-radius: 4px;
+    border-left: 3px solid #ff3b30;
 }
 
 

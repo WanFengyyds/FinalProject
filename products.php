@@ -100,47 +100,6 @@ $mysqli->close();
             <p>No products found.</p>
         <?php endif; ?>
     </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-column">
-                <h4>Admin</h4>
-                <ul>
-                    <li><a href="dashboard.php">Dashboard</a></li>
-                    <li><a href="products.php">Products</a></li>
-                    <li><a href="users.php">Users</a></li>
-                    <li><a href="orders.php">Orders</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Reports</h4>
-                <ul>
-                    <li><a href="sales_report.php">Sales</a></li>
-                    <li><a href="traffic_report.php">Traffic</a></li>
-                    <li><a href="product_report.php">Products</a></li>
-                    <li><a href="customer_report.php">Customers</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Settings</h4>
-                <ul>
-                    <li><a href="profile.php">Profile</a></li>
-                    <li><a href="security.php">Security</a></li>
-                    <li><a href="notifications.php">Notifications</a></li>
-                    <li><a href="preferences.php">Preferences</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="help.php">Help Center</a></li>
-                    <li><a href="docs.php">Documentation</a></li>
-                    <li><a href="contact.php">Contact Us</a></li>
-                    <li><a href="feedback.php">Feedback</a></li>
-                </ul>
-            </div>
-        </div>
         <div class="copyright">
             <p>© 2025 FEAR OF GOD ADMIN DASHBOARD. All Rights Reserved.</p>
         </div>
