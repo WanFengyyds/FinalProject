@@ -22,7 +22,6 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SESSI
     }
 
     $sql = "SELECT COUNT(*) AS order_count FROM orders;";
-
     $result = $mysqli->query($sql);
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
@@ -38,6 +37,15 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SESSI
         $orders_sum = $row['orders_sum'];
     } else {
         $orders_sum = 0;
+    }
+
+    $sql = 'SELECT COUNT(*) AS product_count FROM product;';
+    $result = $mysqli->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $product_count = $row['product_count'];
+    } else {
+        $product_count = 0;
     }
 
 
@@ -106,12 +114,40 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SESSI
             </div>
             
             <div class="stat-card">
-                <div class="stat-value">46.43%</div>
-                <div class="stat-label">GROWTH RATE</div>
+                <?php
+                    echo "<div class='stat-value'>$product_count</div>";
+                    echo "<div class='stat-label'>TOTAL PRODUCTS</div>";
+                ?>
             </div>
         </div>
         
         <!-- Main Content Grid -->
+
+        <div class="action-boxes">
+            <div class="action-box" onclick="window.location.href='products.php'">
+                <i>📋</i>
+                <h3>Product List</h3>
+                <p>View and manage all products</p>
+            </div>
+            
+            <div class="action-box" onclick="window.location.href='add_product.php'">
+                <i>➕</i>
+                <h3>Add Product</h3>
+                <p>Create new product listings</p>
+            </div>
+            
+            <div class="action-box" onclick="window.location.href='users.php'">
+                <i>👥</i>
+                <h3>User Management</h3>
+                <p>Manage user accounts</p>
+            </div>
+            
+            <div class="action-box" onclick="window.location.href='orders.php'">
+                <i>📦</i>
+                <h3>Order Management</h3>
+                <p>View and process orders</p>
+            </div>
+        </div>
         
     </section>
 
