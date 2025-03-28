@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fear Of God | Premium Essentials</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
@@ -26,7 +27,6 @@
             <li><a href="#">Essentials</a></li>
             <li><a href="#">Collections</a></li>
             <li><a href="#">Accessories</a></li>
-            <li><a href="#">Lookbook</a></li>
             <li><a href="#">About</a></li>
         </ul>
         <div class="login-icon">
@@ -43,23 +43,15 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <div class="collection-tag">ESSENTIALS COLLECTION</div>
+            <div class="collection">ESSENTIALS COLLECTION</div>
             <h1>Timeless Essentials. Effortless Fear.</h1>
             <a href="#" class="btn">Shop Essentials</a>
         </div>
     </section>
 
-
-
-
     <!-- Trending Products -->
-
-
-
-
     <section class="trending-products">
         <h2 class="section-title">Bestselling Essentials</h2>
         <div class="products-grid">
@@ -70,7 +62,7 @@
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo '<div class="product-card">';
-                    echo '<img src="' . $row["image_url"] . '" alt="' . $row["name"] . '" class="product-img">';
+                    echo '<img src="../' . $row["image_url"] . '" alt="' . $row["name"] . '" class="product-img">';
                     echo '<div class="product-details">';
                     echo '<h3 class="product-name">' . $row["name"] . '</h3>';
                     echo '<p class="product-price">$' . $row["price"] . '</p>';
@@ -79,54 +71,7 @@
                 }
             }
             ?>
-            <!--
-            <div class="product-card">
-                <img src="img/FearOfGod_Essentials_Hoodie_White.webp" alt="Essentials Hoodie" class="product-img">
-                <div class="product-details">
-                    <h3 class="product-name">Essentials Pullover Hoodie</h3>
-                    <p class="product-price">$120</p>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="img/FearOfGod_Essentials_T-Shirt_Whitewebp.webp" alt="Essentials Sweatpants" class="product-img">
-                <div class="product-details">
-                    <h3 class="product-name">Essentials Sweatpants</h3>
-                    <p class="product-price">$110</p>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="img/FearOfGod_Essentials_Hoodie.webp" alt="Essentials T-Shirt" class="product-img">
-                <div class="product-details">
-                    <h3 class="product-name">Essentials T-Shirt</h3>
-                    <p class="product-price">$75</p>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="img/FearOfGod_Essentials_T-Shirt.webp" alt="Essentials Overshirt" class="product-img">
-                <div class="product-details">
-                    <h3 class="product-name">Essentials Overshirt</h3>
-                    <p class="product-price">$180</p>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </div>
-
-            -->
         </div>
-    </section>
-
-
-
-    <!-- Newsletter -->
-    <section class="newsletter">
-        <h2 class="section-title">Join Our Community</h2>
-        <p>Subscribe to be the first to know about new Essentials drops, exclusive collections, and limited releases.</p>
-        <form class="newsletter-form">
-            <input type="email" placeholder="Enter your email address" class="newsletter-input" required>
-            <button type="submit" class="btn">Subscribe</button>
-        </form>
     </section>
 
     <!-- Footer -->

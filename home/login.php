@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Fear of God</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link to your existing CSS file -->
+    <title>Login - Fear of God</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="login.css">
 </head>
 
 <body>
@@ -29,36 +30,30 @@
         </div>
     </nav>
 
-    <!-- Register Section -->
-    <section class="register-section">
-        <div class="register-container">
-            <h2>Create Your Account</h2>
-            <form class="register-form" action="register.php" method="POST" onsubmit="return controlloPassword()">
+    <!-- Login Section -->
+    <section class="login-section">
+        <div class="login-container">
+            <h2>Login to Your Account</h2>
+            <form class="login-form" action="login.php" method="POST">
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="Enter your email" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <div class="password-wrapper">
+                    <div class="password-input-wrapper">
                         <input type="password" id="password" name="password" placeholder="Enter your password" required>
                         <button type="button" id="togglePassword" class="show-password-btn">👁️</button>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="confirm-password">Confirm Password</label>
-                    <div class="password-wrapper">
-                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
-                        <button type="button" id="toggleConfirmPassword" class="show-password-btn">👁️</button>
-                    </div>
-                </div>
-                <button type="submit" class="btn">Register</button>
+                <button type="submit" class="btn">Login</button>
             </form>
-            <p class="login-link">Already have an account? <a href="login.php">Login here</a>.</p>
+            <p class="register-link">Don't have an account yet? <a href="register.php">Click here</a> to register.</p>
         </div>
     </section>
 
     <?php
+    session_start();
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -73,12 +68,18 @@
         $username = explode('@', $email)[0];
 
         // Direct INSERT without hashing
-        $sql = "INSERT INTO users (username, email, pwd, role) VALUES ('$username', '$email', '$password', 'user')";
-
-        if ($mysqli->query($sql) === TRUE) {
-            echo "<script>alert('Registration successful!'); window.location.href='login.php';</script>";
+        $sql = "SELECT * FROM users WHERE email='$email' AND pwd='$password'";
+        $result = $mysqli->query($sql);
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
+            $_SESSION['user_id'] = $user['user_id'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['role'] = $user['role'];
+            $_SESSION['logged_in'] = true;
+            echo  "<script>alert('Login successfuly!'); window.location.href='home.php';</script>";
         } else {
-            echo "<script>alert('Error during registration: " . $mysqli->error . "');</script>";
+            echo "<script>alert('Wrong Account or Password');</script>";
         }
 
         $mysqli->close();
@@ -135,8 +136,6 @@
     <script>
         const togglePassword = document.getElementById('togglePassword');
         const passwordInput = document.getElementById('password');
-        const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
-        const confirmPasswordInput = document.getElementById('confirm-password');
 
         togglePassword.addEventListener('click', function() {
             // Toggle the type attribute
@@ -146,25 +145,6 @@
             // Toggle the button text/icon
             this.textContent = type === 'password' ? '👁️' : '🙈';
         });
-
-        toggleConfirmPassword.addEventListener('click', function() {
-            // Toggle the type attribute
-            const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            confirmPasswordInput.setAttribute('type', type);
-
-            // Toggle the button text/icon
-            this.textContent = type === 'password' ? '👁️' : '🙈';
-        });
-
-        function controlloPassword() {
-            var password = document.getElementById('password').value;
-            var confirmPassword = document.getElementById('confirm-password').value;
-            if (password != confirmPassword) {
-                alert("Passwords do not match.");
-                return false;
-            }
-            return true;
-        }
     </script>
 </body>
 
