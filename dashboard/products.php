@@ -35,7 +35,8 @@ $mysqli->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Management - Fear of God</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="../fonts/remixicon.css">
 </head>
 
 <body>
@@ -81,7 +82,7 @@ $mysqli->close();
                             <td><?php echo htmlspecialchars($product['product_id']); ?></td>
                             <td>
                                 <?php if (!empty($product['image_url'])): ?>
-                                    <img src="<?php echo $product['image_url'] ?>" alt="<?php echo $product['name'] ?>" class="product-image">
+                                    <img src="../<?php echo $product['image_url'] ?>" alt="<?php echo $product['name'] ?>" class="product-image">
                                 <?php else: ?>
                                     No Image
                                 <?php endif; ?>
@@ -91,8 +92,12 @@ $mysqli->close();
                             <td>$<?php echo number_format($product['price'], 2); ?></td>
                             <td><?php echo $product['stock_quantity']; ?></td>
                             <td>
-                                <button class="action-btn edit-btn" onclick="window.location.href='edit_product.php?id=<?php echo $product['product_id']; ?>'">Edit</button>
-                                <button class="action-btn delete-btn" onclick="confirmDelete(<?php echo $product['product_id']; ?>)">Delete</button>
+                                <button class="action-btn icon-btn" onclick="window.location.href='edit_product.php?id=<?php echo $product['product_id']; ?>'">
+                                    <i class="ri-edit-box-line"></i>
+                                </button>
+                                <button class="action-btn icon-btn" onclick="confirmDelete(<?php echo $product['product_id']; ?>)">
+                                    <i class="ri-delete-bin-line"></i>
+                                </button>
                             </td>
                         </tr>
                     <?php endforeach; ?>

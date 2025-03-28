@@ -60,14 +60,13 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SESSI
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Fear of God</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
 </head>
 
 <body>
-    <!-- Navigation -->
     <nav>
         <div class="logo">
-            <a href="home.php">FEAR OF GOD</a>
+            <a href="../home/home.php">FEAR OF GOD</a>
         </div>
         <ul class="nav-links">
             <li><a href="dashboard.php">Dashboard</a></li>
@@ -76,13 +75,9 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SESSI
             <li><a href="orders.php">Orders</a></li>
         </ul>
         <div class="login-icon">
-            <a href="logout.php">Logout</a>
+            <a href="../home/logout.php">Logout</a>
         </div>
     </nav>
-
-    <?php
-
-    ?>
 
     <!-- Dashboard Content -->
     <section class="dashboard">
@@ -150,10 +145,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SESSI
                 <p>View and process orders</p>
             </div>
         </div>
-
     </section>
-
-    <!-- Footer -->
 
     <div class="copyright">
         <p>© 2025 FEAR OF GOD ADMIN DASHBOARD. All Rights Reserved.</p>

@@ -81,7 +81,7 @@ $mysqli->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Product - Fear of God</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
 </head>
 
 <body>
@@ -128,7 +128,7 @@ $mysqli->close();
 
             <div class="form-group">
                 <label for="price">Price ($)</label>
-                <input type="number" id="price" name="price" class="form-control" step="0.01" min="0"
+                <input type="number" id="price" name="price" class="form-control" min="0"
                     value="<?php echo $product['price']; ?>" required>
             </div>
 
@@ -142,12 +142,12 @@ $mysqli->close();
                 <label for="image_url">Image URL</label>
                 <input type="text" id="image_url" name="image_url" class="form-control"
                     value="<?php echo ($product['image_url']); ?>">
-                <img id="image-preview" src="<?php echo $product['image_url']; ?>" class="image-preview" alt="Product Preview">
+                <img id="image-preview" src="../<?php echo $product['image_url']; ?>" class="image-preview" alt="Product Preview">
             </div>
 
             <div class="btn-group">
                 <button type="submit" class="submit-btn">Update Product</button>
-                <a href="products.php" class="cancel-btn">Cancel</a>
+                <a href="products.php" class="submit-btn">Cancel</a>
             </div>
         </form>
     </section>

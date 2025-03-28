@@ -32,7 +32,7 @@
         <div class="login-icon">
             <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
                 <?php if ($_SESSION['role'] === 'admin'): ?>
-                    <a href="dashboard.php">Dashboard</a> |
+                    <a href="../dashboard/dashboard.php">Dashboard</a> |
                 <?php else: ?>
                     <a href="account.php">My Account</a> |
                 <?php endif; ?>
