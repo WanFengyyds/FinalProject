@@ -37,6 +37,7 @@ $mysqli->close();
     <title>Product Management - Fear of God</title>
     <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="../fonts/remixicon.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>

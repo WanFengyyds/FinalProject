@@ -33,6 +33,8 @@ $mysqli->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Management - Fear of God</title>
     <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="../fonts/remixicon.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
@@ -80,8 +82,12 @@ $mysqli->close();
                             <td><?php echo $user['role']; ?></td>
                             <td><?php echo $user['created_at']; ?></td>
                             <td>
-                                <button class="action-btn edit-btn" onclick="window.location.href='edit_user.php?id=<?php echo $user['user_id']; ?>'">Edit</button>
-                                <button class="action-btn delete-btn" onclick="confirmDelete(<?php echo $user['user_id']; ?>)">Delete</button>
+                                <button class="action-btn icon-btn" onclick="window.location.href='edit_user.php?id=<?php echo $user['user_id']; ?>'">
+                                    <i class="ri-edit-box-line"></i>
+                                </button>
+                                <button class="action-btn icon-btn" onclick="confirmDelete(<?php echo $user['user_id']; ?>)">
+                                    <i class="ri-delete-bin-line"></i>
+                                </button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
