@@ -7,6 +7,7 @@
     <title>Register - Fear of God</title>
     <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>

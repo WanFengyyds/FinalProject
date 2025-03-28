@@ -120,10 +120,6 @@
     transition: transform 0.5s ease;
 }
 
-.login-form .btn:hover::after {
-    transform: translate(-50%, -50%) scale(1);
-}
-
 .login-form .btn:hover {
     background-color: #e6e6e6;
     transform: translateY(-3px);
