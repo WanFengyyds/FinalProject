@@ -24,7 +24,7 @@
         <div class="logo">FEAR OF GOD</div>
         <ul class="nav-links">
             <li><a href="#">Home</a></li>
-            <li><a href="#">Essentials</a></li>
+            <li><a href="../essential/essential.php">Essentials</a></li>
             <li><a href="#">Collections</a></li>
             <li><a href="#">Accessories</a></li>
             <li><a href="#">About</a></li>

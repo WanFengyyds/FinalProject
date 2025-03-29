@@ -155,8 +155,14 @@ nav {
 
 
 .products-container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 40px auto;
+    padding: 0 20px;
+}
+
+.order-container {
+    max-width: 1700px;
+    margin: 40px 10%;
     padding: 0 20px;
 }
 
