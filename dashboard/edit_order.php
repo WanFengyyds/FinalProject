@@ -3,23 +3,9 @@ session_start();
 
 // Check if user is logged in and is admin
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SESSION['role'] !== 'admin') {
-    header("Location: login.php");
+    header("Location: ../home/login.php");
     exit;
 }
-
-
-//recupero il nome
-$nome = $_POST['nome'];
-//recupero il nome di file 
-$nomeFile = $_FILES['nomeFile']['name'];
-//recupero la grandezza di file 
-$size = $_FILES['nomeFile']['size'];
-//recupero il tipo di file
-$type = $_FILES['nomeFile']['type'];
-//recupero tmp_name di file
-$tmp_name = $_FILES['nomeFile']['tmp_name'];
-
-
 // Database connection
 $mysqli = new mysqli('localhost', 'root', '', 'fearofgod');
 

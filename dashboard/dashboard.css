@@ -373,3 +373,60 @@ select.form-control:focus {
     color: #999999;
     font-size: 14px;
 }
+
+.order-items {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.order-items h3 {
+    margin-bottom: 1rem;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.order-items-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.order-items-table th,
+.order-items-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.order-items-table th {
+    background-color: rgba(255, 255, 255, 0.1);
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.order-items-table tr:last-child td {
+    border-bottom: none;
+}
+
+.order-items-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.order-items-table td:nth-child(2),
+.order-items-table td:nth-child(3),
+.order-items-table td:nth-child(4) {
+    text-align: right;
+}
+
+.order-items-table th:nth-child(2),
+.order-items-table th:nth-child(3),
+.order-items-table th:nth-child(4) {
+    text-align: right;
+}
