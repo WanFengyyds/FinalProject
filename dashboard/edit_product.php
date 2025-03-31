@@ -90,7 +90,7 @@ $mysqli->close();
     <!-- Navigation -->
     <nav>
         <div class="logo">
-            <a href="home.php">FEAR OF GOD</a>
+            <a href="../home/home.php">FEAR OF GOD</a>
         </div>
         <ul class="nav-links">
             <li><a href="dashboard.php">Dashboard</a></li>
