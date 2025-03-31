@@ -25,7 +25,18 @@ if ($current_category != 0) {
     $sql .= " JOIN productcategory ON product.product_id = productcategory.product_id 
               WHERE productcategory.category_id = " . $current_category;
 }
+
+$search_Bar = isset($_GET['search']) ? $_GET['search'] : '%';
+if ($search_Bar != '%' && $current_category != 0) {
+    $sql .= " AND product.name LIKE '%" . $mysqli->real_escape_string($search_Bar) . "%'";
+} else if ($search_Bar != '%') {
+    $sql .= " WHERE product.name LIKE '%" . $mysqli->real_escape_string($search_Bar) . "%'";
+}
+
 $result = $mysqli->query($sql);
+if ($result === false) {
+    die("$sql<br>" . $mysqli->error);
+}
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +76,7 @@ $result = $mysqli->query($sql);
                 <?php endif; ?>
                 <a href="logout.php">Logout</a>
             <?php else: ?>
-                <a href="login.php">Login</a>
+                <a href="../home/login.php">Login</a>
             <?php endif; ?>
         </div>
     </nav>
@@ -77,26 +88,38 @@ $result = $mysqli->query($sql);
 
     <!-- Filter Section -->
     <div class="filter-container">
-    <div class="products-count">
-        <p>
-            <?php echo $result->num_rows; ?> products found
-            <?php if ($current_category > 0 && isset($categories[$current_category])): ?>
-                in "<?php echo $categories[$current_category]; ?>"
-            <?php endif; ?>
-        </p>
-    </div>
-    <div class="filter-icon">
-        <div class="filter-btn" id="filterBtn">
-            <i class="ri-equalizer-line"></i>
+        <div class="products-count">
+            <p>
+                <?php echo $result->num_rows; ?> products found
+                <?php if ($current_category > 0 && isset($categories[$current_category])): ?>
+                    in "<?php echo $categories[$current_category]; ?>"
+                <?php endif; ?>
+            </p>
         </div>
-        <ul class="filter-dropdown">
-            <li><a href="essentials.php">All</a></li>
-            <?php foreach ($categories as $id => $name): ?>
-                <li><a href="essentials.php?category=<?php echo $id; ?>"><?php echo $name; ?></a></li>
-            <?php endforeach; ?>
-        </ul>
-    </div>
+        <div class="search-filter-wrapper">
+            <div class="filter-icon">
+                <div class="filter-btn" id="filterBtn">
+                    <i class="ri-equalizer-line"></i>
+                </div>
+                <ul class="filter-dropdown">
+                    <li><a href="essentials.php">All</a></li>
+                    <?php foreach ($categories as $id => $name): ?>
+                        <li><a href="essentials.php?category=<?php echo $id; ?>"><?php echo $name; ?></a></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+            <div class="search-bar">
+                <form action="essentials.php" method="get">
+                    <?php if ($current_category != 0): ?>
+                        <input type="hidden" name="category" value="<?php echo $current_category; ?>">
+                    <?php endif; ?>
+                    <input type="text" name="search" placeholder="Search products..."
+                        value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+                    <button type="submit"><i class="ri-search-line"></i></button>
+                </form>
+            </div>
         </div>
+    </div>
 
     <!-- Products Grid -->
     <section class="products-grid-container">

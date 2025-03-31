@@ -130,7 +130,7 @@ nav {
     box-shadow: 0px 3px 5px -1px #ccc;
     z-index: 100;
     border-radius: 4px;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .filter-icon:hover .filter-dropdown {
@@ -183,6 +183,56 @@ nav {
     color: lightgray;
 }
 
+
+.search-filter-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Search Bar Styles */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    padding: 5px;
+    transition: all 0.3s ease;
+}
+
+.search-bar:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.search-bar input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 8px 12px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+}
+
+.search-bar input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search-bar button {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0 10px;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.search-bar button:hover {
+    color: #cccccc;
+}
 
 .products-count {
     display: flex;
