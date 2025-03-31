@@ -62,6 +62,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SESSI
     <title>Admin Dashboard - Fear of God</title>
     <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/jpg" href="../assets/itoshiSae.jpg">
 </head>
 
 <body>

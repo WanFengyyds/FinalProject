@@ -7,6 +7,7 @@
     <title>Fear Of God | Premium Essentials</title>
     <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/jpg" href="../assets/itoshiSae.jpg">
 </head>
 
 <body>

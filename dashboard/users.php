@@ -35,6 +35,7 @@ $mysqli->close();
     <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="../fonts/remixicon.css">
     <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/jpg" href="../assets/itoshiSae.jpg">
 </head>
 
 <body>

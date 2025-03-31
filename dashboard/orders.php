@@ -35,9 +35,11 @@ $mysqli->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Management - Fear of God</title>
+    <link rel="icon" type="image/jpg" href="../assets/itoshiSae.jpg">
     <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="../fonts/remixicon.css">
     <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/jpg" href="../assets/itoshiSae.jpg">
 </head>
 
 <body>
@@ -91,7 +93,7 @@ $mysqli->close();
                             <td><?php echo $order['payment_method']; ?></td>
 
                             <td>
-                                <button class="action-btn icon-btn" onclick="window.location.href='edit_product.php?id=<?php echo $order['order_id']; ?>'">
+                                <button class="action-btn icon-btn" onclick="window.location.href='edit_order.php?id=<?php echo $order['order_id']; ?>'">
                                     <i class="ri-edit-box-line"></i>
                                 </button>
                                 <button class="action-btn icon-btn" onclick="confirmDelete(<?php echo $order['order_id']; ?>)">

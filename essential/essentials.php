@@ -49,6 +49,7 @@ if ($result === false) {
     <link rel="stylesheet" href="essential.css">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../fonts/remixicon.css">
+    <link rel="icon" type="image/jpg" href="../assets/itoshiSae.jpg">
     <link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
 </head>
 
