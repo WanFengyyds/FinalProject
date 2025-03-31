@@ -6,8 +6,23 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SESSI
     header("Location: login.php");
     exit;
 }
+$path = " ";
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['nomeFile']) && $_FILES['nomeFile']['error'] === UPLOAD_ERR_OK) {
+    $nomeFile = $_FILES['nomeFile']['name'];
+    //recupero la grandezza di file 
+    $size = $_FILES['nomeFile']['size'];
+    //recupero il tipo di file
+    $type = $_FILES['nomeFile']['type'];
+    //recupero tmp_name di file
+    $tmp_name = $_FILES['nomeFile']['tmp_name'];
 
-// Database connection
+    $dir = "../img";
+    move_uploaded_file($_FILES['nomeFile']['tmp_name'], $dir . "/" . $nomeFile);
+    $path = "img/" . $nomeFile;
+}
+
+
+
 $mysqli = new mysqli('localhost', 'root', '', 'fearofgod');
 
 if ($mysqli->connect_error) {
@@ -47,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $description = $_POST['description'];
     $price = $_POST['price'];
     $stock_quantity = $_POST['stock_quantity'];
-    $image_url = $_POST['image_url'];
+    $image_url = $path;
 
     // Basic validation
     if (empty($name) || empty($price)) {
@@ -114,7 +129,7 @@ $mysqli->close();
             <div class="error-message"><?php echo $error; ?></div>
         <?php endif; ?>
 
-        <form class="edit-product-form" method="POST" action="edit_product.php">
+        <form class="edit-product-form" method="POST" action="edit_product.php" enctype="multipart/form-data">
             <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
 
             <div class="form-group">
@@ -141,10 +156,8 @@ $mysqli->close();
             </div>
 
             <div class="form-group">
-                <label for="image_url">Image URL</label>
-                <input type="text" id="image_url" name="image_url" class="form-control"
-                    value="<?php echo ($product['image_url']); ?>">
-                <img id="image-preview" src="../<?php echo $product['image_url']; ?>" class="image-preview" alt="Product Preview">
+                <label for="nomeFile">Product Image</label>
+                <input type="file" id="nomeFile" name="nomeFile" class="form-control" accept="image/*" required>
             </div>
 
             <div class="btn-group">
@@ -159,7 +172,6 @@ $mysqli->close();
     <div class="copyright">
         <p>© 2025 FEAR OF GOD ADMIN DASHBOARD. All Rights Reserved.</p>
     </div>
-    </footer>
 </body>
 
 </html>

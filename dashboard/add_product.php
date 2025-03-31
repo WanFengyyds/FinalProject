@@ -6,67 +6,56 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SESSI
     header("Location: login.php");
     exit;
 }
+$path = " ";
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['nomeFile']) && $_FILES['nomeFile']['error'] === UPLOAD_ERR_OK) {
+    $nomeFile = $_FILES['nomeFile']['name'];
+    //recupero la grandezza di file 
+    $size = $_FILES['nomeFile']['size'];
+    //recupero il tipo di file
+    $type = $_FILES['nomeFile']['type'];
+    //recupero tmp_name di file
+    $tmp_name = $_FILES['nomeFile']['tmp_name'];
 
-// Database connection
-$mysqli = new mysqli('localhost', 'root', '', 'fearofgod');
+    $dir = "../img";
+    move_uploaded_file($_FILES['nomeFile']['tmp_name'], $dir . "/" . $nomeFile);
+    $path = "img/" . $nomeFile;
 
-if ($mysqli->connect_error) {
-    die("Connection failed: " . $mysqli->connect_error);
-}
+    // Database connection
+    $mysqli = new mysqli('localhost', 'root', '', 'fearofgod');
 
-// Initialize variables
-$product = [
-    'product_id' => '',
-    'name' => '',
-    'description' => '',
-    'price' => '',
-    'stock_quantity' => '',
-    'image_url' => ''
-];
-$error = '';
-
-// Check if product ID is provided
-if (isset($_GET['id'])) {
-    $product_id = $_GET['id'];
-
-    // Fetch product data
-    $sql = "SELECT * FROM product WHERE product_id = '$product_id'";
-    $result = $mysqli->query($sql);
-
-    if ($result->num_rows > 0) {
-        $product = $result->fetch_assoc();
-    } else {
-        $error = "Product not found";
+    if ($mysqli->connect_error) {
+        die("Connection failed: " . $mysqli->connect_error);
     }
-}
 
-// Handle form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $product_id = $_POST['product_id'];
-    $name = $_POST['name'];
-    $description = $_POST['description'];
-    $price = $_POST['price'];
-    $stock_quantity = $_POST['stock_quantity'];
-    $image_url = $_POST['image_url'];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $product_id = $_POST['product_id'];
+        $name = $_POST['name'];
+        $description = $_POST['description'];
+        $price = $_POST['price'];
+        $stock_quantity = $_POST['stock_quantity'];
+        $image_url = $path;
 
-    // Basic validation
-    if (empty($name) || empty($price)) {
-        $error = "Name and price are required fields";
-    } else {
-        // Update product in database
-        $sql = "INSERT INTO product (name, description, price, stock_quantity, image_url) 
+        // Basic validation
+        if (empty($name) || empty($price)) {
+            $error = "Name and price are required fields";
+        } else {
+            // Update product in database
+            $sql = "INSERT INTO product (name, description, price, stock_quantity, image_url) 
 VALUES ('$name', '$description', '$price', '$stock_quantity', '$image_url')";
 
-        if ($mysqli->query($sql) === TRUE) {
-            header("Location: add_product.php?success=Product added successfully");
-            exit;
-        } else {
-            $error = "Error adding product: " . $mysqli->error;
+            if ($mysqli->query($sql) === TRUE) {
+                header("Location: add_product.php?success=Product added successfully");
+                exit;
+            } else {
+                $error = "Error adding product: " . $mysqli->error;
+            }
         }
     }
+
+    $mysqli->close();
 }
 
-$mysqli->close();
+
 ?>
 
 <!DOCTYPE html>
@@ -105,7 +94,7 @@ $mysqli->close();
             <a href="dashboard.php" class="back-btn">← Back to Dashboard</a>
         </div>
 
-        <form class="edit-product-form" method="POST" action="add_product.php">
+        <form class="edit-product-form" method="POST" action="add_product.php" enctype="multipart/form-data">
             <input type="hidden" name="product_id">
 
             <div class="form-group">
@@ -132,14 +121,12 @@ $mysqli->close();
             </div>
 
             <div class="form-group">
-                <label for="image_url">Image URL</label>
-                <input type="text" id="image_url" name="image_url" class="form-control"
-                    required>
+                <label for="nomeFile">Product Image</label>
+                <input type="file" id="nomeFile" name="nomeFile" class="form-control" accept="image/*" required>
             </div>
 
             <div class="btn-group">
                 <button type="submit" class="submit-btn">Add Product</button>
-            </div>
         </form>
     </section>
 
