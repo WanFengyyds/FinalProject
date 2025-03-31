@@ -72,7 +72,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SESSI
         <ul class="nav-links">
             <li><a href="dashboard.php">Dashboard</a></li>
             <li><a href="products.php">Products</a></li>
-            <li><a href="user.php">Users</a></li>
+            <li><a href="users.php">Users</a></li>
             <li><a href="orders.php">Orders</a></li>
         </ul>
         <div class="login-icon">

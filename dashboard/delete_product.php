@@ -15,13 +15,11 @@ if ($mysqli->connect_error) {
 
 $product_id = (int)$_GET['id'];
 
-// Delete user
-$stmt = $mysqli->prepare("DELETE FROM product WHERE product_id = ?");
-$stmt->bind_param("i", $product_id);
-$stmt->execute();
-
-// Redirect back to users page
-header("Location: products.php");
-$stmt->close();
+$sql = "DELETE FROM product WHERE product_id = $product_id";
+if ($mysqli->query($sql) === TRUE) {
+    header("Location: products.php?success=Product deleted successfully");
+} else {
+    echo "Error deleting product: " . $mysqli->error;
+}
 $mysqli->close();
 exit;

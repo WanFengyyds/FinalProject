@@ -25,10 +25,12 @@ if ($user_id === $current_user_id) {
     exit;
 }
 
-// Delete user
-$stmt = $mysqli->prepare("DELETE FROM users WHERE user_id = ?");
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-
+$sql = "DELETE FROM users WHERE user_id = $user_id";
+if ($mysqli->query($sql) === TRUE) {
+    header("Location: users.php?success=User deleted successfully");
+    exit;
+} else {
+    echo "Error deleting user: " . $mysqli->error;
+}
 // Redirect back to users page
 exit;
