@@ -38,6 +38,11 @@
             <h2>Create Your Account</h2>
             <form class="login-form" action="register.php" method="POST" onsubmit="return controlloPassword()">
                 <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                    <span id="username-error" style="color: red; display: none;">Username already exists</span>
+                </div>
+                <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="Enter your email" required>
                 </div>
@@ -65,6 +70,7 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST['email'];
         $password = $_POST['password'];
+        $username = $_POST['username'];
 
         $mysqli = new mysqli('localhost', 'root', '', 'fearofgod');
 
@@ -72,18 +78,33 @@
             die("Connection failed: " . $mysqli->connect_error);
         }
 
-        // Generate a username from email
-        $username = explode('@', $email)[0];
+        // Check if username or email exists
+        $check_query = "SELECT username, email FROM users WHERE username = '$username' OR email = '$email'";
+        $result = $mysqli->query($check_query);
 
-        // Direct INSERT without hashing
-        $sql = "INSERT INTO users (username, email, pwd, role) VALUES ('$username', '$email', '$password', 'user')";
-
-        if ($mysqli->query($sql) === TRUE) {
-            echo "<script>alert('Registration successful!'); window.location.href='login.php';</script>";
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            if ($row['username'] === $username) {
+                echo "<script>
+                    alert('Username already exists. Please choose another one.');
+                    document.getElementById('username').value = '';
+                </script>";
+            } else {
+                echo "<script>
+                    alert('Email already registered. Please use another email.');
+                    document.getElementById('email').value = '';
+                </script>";
+            }
         } else {
-            echo "<script>alert('Error during registration: " . $mysqli->error . "');</script>";
-        }
+            // Proceed with registration
+            $sql = "INSERT INTO users (username, email, pwd, role) VALUES ('$username', '$email', '$password', 'user')";
 
+            if ($mysqli->query($sql)) {
+                echo "<script>alert('Registration successful!'); window.location.href='login.php';</script>";
+            } else {
+                echo "<script>alert('Error during registration: " . $mysqli->error . "');</script>";
+            }
+        }
         $mysqli->close();
     }
     ?>
