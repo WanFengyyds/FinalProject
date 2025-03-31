@@ -281,7 +281,7 @@ nav {
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 4px;
-    color: #ffffff;
+    color: white;
     font-size: 16px;
     transition: all 0.3s ease;
 }
@@ -290,6 +290,26 @@ nav {
     outline: none;
     border-color: rgba(255, 255, 255, 0.6);
     background-color: rgba(255, 255, 255, 0.15);
+}
+
+select.form-control {
+    color: #ffffff;
+    background-color: #333333;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #555555;
+}
+
+select.form-control option {
+    color: #000000;
+    background-color: #ffffff;
+    padding: 8px;
+}
+
+select.form-control:focus {
+    outline: none;
+    border-color: #3ca0e7;
+    box-shadow: 0 0 5px rgba(60, 160, 231, 0.5);
 }
 
 .form-textarea {

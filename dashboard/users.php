@@ -31,7 +31,7 @@ $mysqli->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Management - Fear of God</title>
+    <title>User Management - Fear of God</title>
     <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="../fonts/remixicon.css">
     <link rel="stylesheet" href="../style.css">
@@ -41,7 +41,7 @@ $mysqli->close();
     <!-- Navigation -->
     <nav>
         <div class="logo">
-            <a href="home.php">FEAR OF GOD</a>
+            <a href="../home/home.php">FEAR OF GOD</a>
         </div>
         <ul class="nav-links">
             <li><a href="dashboard.php">Dashboard</a></li>
@@ -50,7 +50,7 @@ $mysqli->close();
             <li><a href="orders.php">Orders</a></li>
         </ul>
         <div class="login-icon">
-            <a href="logout.php">Logout</a>
+            <a href="../home/logout.php">Logout</a>
         </div>
     </nav>
 
@@ -58,7 +58,7 @@ $mysqli->close();
     <section class="products-container">
         <div class="products-header">
             <h1 class="products-title">User Management</h1>
-            <a href="add_product.php" class="add-product-btn">Add New User</a>
+            <a href="add_user.php" class="add-product-btn">Add New User</a>
         </div>
 
         <?php if (!empty($users)): ?>

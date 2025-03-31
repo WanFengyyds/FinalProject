@@ -100,7 +100,7 @@ $mysqli->close();
     <section class="edit-product-container">
         <div class="edit-product-header">
             <h1 class="edit-product-title">Add Product</h1>
-            <a href="products.php" class="back-btn">← Back to Dashboard</a>
+            <a href="dashboard.php" class="back-btn">← Back to Dashboard</a>
         </div>
 
         <form class="edit-product-form" method="POST" action="add_product.php">

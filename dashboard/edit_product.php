@@ -98,7 +98,7 @@ $mysqli->close();
             <li><a href="orders.php">Orders</a></li>
         </ul>
         <div class="login-icon">
-            <a href="logout.php">Logout</a>
+            <a href="../home/logout.php">Logout</a>
         </div>
     </nav>
 
