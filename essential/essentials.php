@@ -44,7 +44,11 @@ $result = $mysqli->query($sql);
 <body>
     <!-- Navigation -->
     <nav>
-        <div class="logo">FEAR OF GOD</div>
+        <div class="logo">
+            <a href="../home/home.php">
+                FEAR OF GOD
+            </a>
+        </div>
         <ul class="nav-links">
             <li><a href="../home/home.php">Home</a></li>
             <li><a href="#">Essentials</a></li>

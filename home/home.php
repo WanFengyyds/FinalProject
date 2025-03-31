@@ -21,10 +21,14 @@
 
     <!-- Navigation -->
     <nav>
-        <div class="logo">FEAR OF GOD</div>
+        <div class="logo">
+            <a href="home.php">
+                FEAR OF GOD
+            </a>
+        </div>
         <ul class="nav-links">
             <li><a href="#">Home</a></li>
-            <li><a href="../essential/essential.php">Essentials</a></li>
+            <li><a href="../essential/essentials.php">Essentials</a></li>
             <li><a href="#">Collections</a></li>
             <li><a href="#">Accessories</a></li>
             <li><a href="#">About</a></li>
