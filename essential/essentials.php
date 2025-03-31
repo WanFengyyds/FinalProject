@@ -38,6 +38,7 @@ $result = $mysqli->query($sql);
     <link rel="stylesheet" href="essential.css">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../fonts/remixicon.css">
+    <link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -45,7 +46,7 @@ $result = $mysqli->query($sql);
     <nav>
         <div class="logo">FEAR OF GOD</div>
         <ul class="nav-links">
-            <li><a href="#">Home</a></li>
+            <li><a href="../home/home.php">Home</a></li>
             <li><a href="#">Essentials</a></li>
             <li><a href="#">Collections</a></li>
             <li><a href="#">Accessories</a></li>
@@ -72,52 +73,26 @@ $result = $mysqli->query($sql);
 
     <!-- Filter Section -->
     <div class="filter-container">
-        <div class="products-count">
-            <p>
-                <?php echo $result->num_rows; ?> products found
-                <?php if ($current_category > 0 && isset($categories[$current_category])): ?>
-                    in "<?php echo $categories[$current_category]; ?>"
-                <?php endif; ?>
-            </p>
-        </div>
-        <div class="filter-icon">
-            <div class="filter-btn" id="filterBtn">
-                <i class="ri-equalizer-line"></i>
-            </div>
-            <div class="dropdown-content">
-                <ul class="filter-list">
-                    <li><a href="essentials.php">All</a></li>
-                    <?php foreach ($categories as $id => $name): ?>
-                        <li><a href="essentials.php?category=<?php echo $id; ?>"><?php echo $name; ?></a></li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-
-        </div>
-
-
-
+    <div class="products-count">
+        <p>
+            <?php echo $result->num_rows; ?> products found
+            <?php if ($current_category > 0 && isset($categories[$current_category])): ?>
+                in "<?php echo $categories[$current_category]; ?>"
+            <?php endif; ?>
+        </p>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <div class="filter-icon">
+        <div class="filter-btn" id="filterBtn">
+            <i class="ri-equalizer-line"></i>
+        </div>
+        <ul class="filter-dropdown">
+            <li><a href="essentials.php">All</a></li>
+            <?php foreach ($categories as $id => $name): ?>
+                <li><a href="essentials.php?category=<?php echo $id; ?>"><?php echo $name; ?></a></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+        </div>
 
     <!-- Products Grid -->
     <section class="products-grid-container">
