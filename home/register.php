@@ -115,7 +115,7 @@
             <div class="footer-column">
                 <h4>Shop</h4>
                 <ul>
-                    <li><a href="#">Essentials</a></li>
+                    <li><a href="../essential/essentials.php">Essentials</a></li>
                     <li><a href="#">Main Line</a></li>
                     <li><a href="#">Accessories</a></li>
                     <li><a href="#">New Arrivals</a></li>

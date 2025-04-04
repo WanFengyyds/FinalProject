@@ -157,7 +157,7 @@ $mysqli->close();
 
             <div class="form-group">
                 <label for="nomeFile">Product Image</label>
-                <input type="file" id="nomeFile" name="nomeFile" class="form-control" accept="image/*" required>
+                <input type="file" id="nomeFile" name="nomeFile" class="form-control" accept="image/*">
             </div>
 
             <div class="btn-group">

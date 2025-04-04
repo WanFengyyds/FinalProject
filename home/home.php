@@ -39,7 +39,7 @@
                 <?php if ($_SESSION['role'] === 'admin'): ?>
                     <a href="../dashboard/dashboard.php">Dashboard</a> |
                 <?php else: ?>
-                    <a href="account.php">My Account</a> |
+                    <a href="../account/account.php">My Account</a> |
                 <?php endif; ?>
                 <a href="logout.php">Logout</a>
             <?php else: ?>
