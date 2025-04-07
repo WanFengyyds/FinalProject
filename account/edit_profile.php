@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // If no errors, update the profile
         if (empty($error)) {
             if (!empty($new_password)) {
-                $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+                $hashed_password = md5($new_password); // Hash the new password
                 $sql = "UPDATE users SET 
                         username = '$new_username',
                         email = '$new_email',
