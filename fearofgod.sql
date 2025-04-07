@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： 127.0.0.1
--- 生成日期： 2025-03-31 21:04:37
+-- 生成日期： 2025-04-07 21:42:07
 -- 服务器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- 数据库： `fearofgod`
 --
-CREATE DATABASE IF NOT EXISTS `fearofgod` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `fearofgod`;
 
 -- --------------------------------------------------------
 
@@ -130,8 +128,7 @@ INSERT INTO `product` (`product_id`, `name`, `description`, `price`, `stock_quan
 (9, 'Essentials T-Shirt Black', 'Classic FOG Essential T-Shirt', 90.00, 85, 'img/FearOfGod_Essentials_T-Shirt_Black.webp'),
 (10, 'Essentials Sweatpants Black', 'Classic FOG Essential sweatpants in black', 140.00, 60, 'img/FearOfGod_Essentials_Sweatpants_Black.webp'),
 (12, 'Essentials Shorts Black', 'FOG Essential shorts in black', 110.00, 70, 'img/FearOfGod_Essentials_Shorts_Black.webp'),
-(22, 'Essentials Bulls Hoodie', 'FOG Essential hoodie collab with NBA BULLS', 120.00, 35, 'img/FearOfGod_Essentials_Hoodie_NBABULL.webp'),
-(130, 'Prodigy', 'Itoshi Sae', 99999999.99, 1, 'img/itoshiSae.jpg');
+(22, 'Essentials Bulls Hoodie', 'FOG Essential hoodie collab with NBA BULLS', 120.00, 35, 'img/FearOfGod_Essentials_Hoodie_NBABULL.webp');
 
 -- --------------------------------------------------------
 
@@ -204,14 +201,15 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `email`, `pwd`, `role`, `created_at`) VALUES
-(5, 'anna_esposito', 'anna.esposito@example.com', 'password101', 'user', '2025-03-22 08:16:03'),
-(6, 'luca_ferrari', 'luca.ferrari@example.com', 'password202', 'user', '2025-03-22 08:16:03'),
-(7, 'sara_russo', 'sara.russo@example.com', 'password303', 'user', '2025-03-22 08:16:03'),
-(8, 'marco_gallo', 'marco.gallo@example.com', 'password404', 'user', '2025-03-22 08:16:03'),
-(9, 'elena_conti', 'elena.conti@example.com', 'password505', 'user', '2025-03-22 08:16:03'),
-(10, 'francesco_marini', 'francesco.marini@example.com', 'password606', 'user', '2025-03-22 08:16:03'),
-(20, 'admin', 'admin@fog.com', 'admin', 'admin', '2025-03-31 16:08:10'),
-(21, 'ProfBerton', 'berton@fog.com', 'berton', 'admin', '2025-03-31 18:57:08');
+(5, 'anna_esposito', 'anna.esposito@example.com', 'baf28e53fe8b3ecb3f6d00eb4f74be1b', 'user', '2025-03-22 08:16:03'),
+(6, 'luca_ferrari', 'luca.ferrari@example.com', '31a9b6655d6e6a9a7777286141035904', 'user', '2025-03-22 08:16:03'),
+(7, 'sara_russo', 'sara.russo@example.com', '724addb829da5b341ac094ef91d1ba5f', 'user', '2025-03-22 08:16:03'),
+(8, 'marco_gallo', 'marco.gallo@example.com', '91017957eef8fd56b1d4b9f7c48020a9', 'user', '2025-03-22 08:16:03'),
+(9, 'elena_conti', 'elena.conti@example.com', 'ca17f5139c8285d6510597dc8c14cf30', 'user', '2025-03-22 08:16:03'),
+(10, 'francesco_marini', 'francesco.marini@example.com', 'fbfc979e15c5fd8d5d35b9e3f25f7640', 'user', '2025-03-22 08:16:03'),
+(20, 'admin', 'admin@fog.com', '21232f297a57a5a743894a0e4a801fc3', 'admin', '2025-03-31 16:08:10'),
+(21, 'ProfBerton', 'berton@fog.com', '2a26bf670d07d5d11cb2b3cd4cd3dbc9', 'admin', '2025-03-31 18:57:08'),
+(23, 'EnricoSchillaci', 'enrico@gmail.com', '5b1b4dee9103f759fdb57197a78780a6', 'user', '2025-04-04 06:11:16');
 
 --
 -- 转储表的索引
@@ -293,7 +291,7 @@ ALTER TABLE `orders`
 -- 使用表AUTO_INCREMENT `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 
 --
 -- 使用表AUTO_INCREMENT `shipping_addresses`
@@ -305,7 +303,7 @@ ALTER TABLE `shipping_addresses`
 -- 使用表AUTO_INCREMENT `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- 限制导出的表
