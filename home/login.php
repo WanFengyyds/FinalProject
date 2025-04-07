@@ -57,10 +57,16 @@
     <?php
     session_start();
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+        $email = htmlspecialchars($_POST['email']);
+        $password = htmlspecialchars($_POST['password']);
+        $password = md5($password); // Hashing the password
+
+
 
         $mysqli = new mysqli('localhost', 'root', '', 'fearofgod');
+
+        $email = $mysqli->real_escape_string($email);
+        $password = $mysqli->real_escape_string($password);
 
         if ($mysqli->connect_error) {
             die("Connection failed: " . $mysqli->connect_error);

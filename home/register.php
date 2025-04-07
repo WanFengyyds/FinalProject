@@ -68,7 +68,9 @@
 
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
         $email = $_POST['email'];
+        $password = md5($_POST['password']); // Hashing the password
         $password = $_POST['password'];
         $username = $_POST['username'];
 
