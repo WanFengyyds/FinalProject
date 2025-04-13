@@ -56,13 +56,14 @@
         </div>
     </section>
 
-    <!-- Trending Products -->
+    <!-- Last Pieces Section -->
     <section class="trending-products">
-        <h2 class="section-title">Bestselling Essentials</h2>
+        <h2 class="section-title">Last Pieces Available</h2>
         <div class="products-grid">
             <?php
             $mysqli = new mysqli("localhost", "root", "", "fearofgod");
-            $sql = "SELECT * FROM product ORDER BY RAND() LIMIT 4";
+            // Get products with lowest stock quantities (limit to 4 items)
+            $sql = "SELECT * FROM product WHERE stock_quantity > 0 ORDER BY stock_quantity ASC LIMIT 4";
             $result = $mysqli->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -70,11 +71,14 @@
                     echo '<img src="../' . $row["image_url"] . '" alt="' . $row["name"] . '" class="product-img">';
                     echo '<div class="product-details">';
                     echo '<h3 class="product-name">' . $row["name"] . '</h3>';
-                    echo '<p class="product-price">$' . $row["price"] . '</p>';
+                    $originalPrice = $row["price"];
+                    $salePrice = $originalPrice * 0.8;  // 20% off
+                    echo '<p class="product-price"><s>$' . number_format($originalPrice, decimals: 2) . '</s> <span class="sale-price">$' . number_format($salePrice, 2) . '</span></p>';
                     echo '<button class="add-to-cart">Add to Cart</button>';
                     echo '</div></div>';
                 }
             }
+            $mysqli->close();
             ?>
         </div>
     </section>
