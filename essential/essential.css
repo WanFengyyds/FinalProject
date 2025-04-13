@@ -319,3 +319,34 @@ nav {
     padding: 40px;
     color: #cccccc;
 }
+
+/* Best Selling Button */
+.best-selling-btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.best-selling-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+
+
+.search-filter-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}

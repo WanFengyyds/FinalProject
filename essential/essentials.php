@@ -20,7 +20,12 @@ if ($result->num_rows > 0) {
 
 // Get products based on filter (if any)
 $current_category = isset($_GET['category']) ? (int)$_GET['category'] : 0;
-$sql = "SELECT product.* FROM product";
+$best_selling = isset($_GET['best_selling']) ? (int)$_GET['best_selling'] : 0;
+
+$sql = "SELECT product.*, COALESCE(SUM(itemorder.quantity), 0) as total_orders 
+        FROM product 
+        LEFT JOIN itemorder ON product.product_id = itemorder.product_id";
+
 if ($current_category != 0) {
     $sql .= " JOIN productcategory ON product.product_id = productcategory.product_id 
               WHERE productcategory.category_id = " . $current_category;
@@ -31,6 +36,12 @@ if ($search_Bar != '%' && $current_category != 0) {
     $sql .= " AND product.name LIKE '%" . $mysqli->real_escape_string($search_Bar) . "%'";
 } else if ($search_Bar != '%') {
     $sql .= " WHERE product.name LIKE '%" . $mysqli->real_escape_string($search_Bar) . "%'";
+}
+
+$sql .= " GROUP BY product.product_id";
+
+if ($best_selling) {
+    $sql .= " ORDER BY total_orders DESC LIMIT 1";
 }
 
 $result = $mysqli->query($sql);
@@ -119,6 +130,12 @@ if ($result === false) {
                     <button type="submit"><i class="ri-search-line"></i></button>
                 </form>
             </div>
+
+            <a href="essentials.php?category=<?php echo $current_category; ?>&best_selling=1<?php echo $search_Bar != '%' ? '&search=' . urlencode($search_Bar) : ''; ?>"
+                class="best-selling-btn <?php echo $best_selling ? 'active' : ''; ?>">
+                Best Selling
+            </a>
+
         </div>
     </div>
 
