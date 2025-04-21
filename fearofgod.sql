@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： 127.0.0.1
--- 生成日期： 2025-04-07 21:42:07
+-- 生成日期： 2025-04-21 19:39:23
 -- 服务器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -20,6 +20,40 @@ SET time_zone = "+00:00";
 --
 -- 数据库： `fearofgod`
 --
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `cart`
+--
+
+CREATE TABLE `cart` (
+  `cart_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- 转存表中的数据 `cart`
+--
+
+INSERT INTO `cart` (`cart_id`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 23, '2025-04-21 17:37:30', '2025-04-21 17:37:30');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `cart_items`
+--
+
+CREATE TABLE `cart_items` (
+  `cart_item_id` int(11) NOT NULL,
+  `cart_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL DEFAULT 1,
+  `added_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -67,10 +101,7 @@ INSERT INTO `itemorder` (`item_order_id`, `order_id`, `product_id`, `quantity`, 
 (2, 1, 7, 1, 29.99, '2025-03-22 08:18:59'),
 (3, 2, 10, 1, 49.99, '2025-03-22 08:18:59'),
 (4, 3, 8, 1, 29.99, '2025-03-22 08:18:59'),
-(5, 3, NULL, 1, 24.99, '2025-03-22 08:18:59'),
-(6, 4, NULL, 1, 140.00, '2025-03-23 09:15:22'),
 (7, 4, 12, 1, 110.00, '2025-03-23 09:15:22'),
-(8, 4, NULL, 1, 45.00, '2025-03-23 09:15:22'),
 (9, 5, 9, 2, 90.00, '2025-03-25 13:30:45');
 
 -- --------------------------------------------------------
@@ -216,6 +247,21 @@ INSERT INTO `users` (`user_id`, `username`, `email`, `pwd`, `role`, `created_at`
 --
 
 --
+-- 表的索引 `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`cart_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- 表的索引 `cart_items`
+--
+ALTER TABLE `cart_items`
+  ADD PRIMARY KEY (`cart_item_id`),
+  ADD KEY `cart_id` (`cart_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
 -- 表的索引 `category`
 --
 ALTER TABLE `category`
@@ -270,6 +316,18 @@ ALTER TABLE `users`
 --
 
 --
+-- 使用表AUTO_INCREMENT `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- 使用表AUTO_INCREMENT `cart_items`
+--
+ALTER TABLE `cart_items`
+  MODIFY `cart_item_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- 使用表AUTO_INCREMENT `category`
 --
 ALTER TABLE `category`
@@ -308,6 +366,19 @@ ALTER TABLE `users`
 --
 -- 限制导出的表
 --
+
+--
+-- 限制表 `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
+
+--
+-- 限制表 `cart_items`
+--
+ALTER TABLE `cart_items`
+  ADD CONSTRAINT `cart_items_ibfk_1` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`cart_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `cart_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE;
 
 --
 -- 限制表 `itemorder`

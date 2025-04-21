@@ -84,7 +84,7 @@ if ($result === false) {
                 <?php if ($_SESSION['role'] === 'admin'): ?>
                     <a href="../dashboard/dashboard.php">Dashboard</a> |
                 <?php else: ?>
-                    <a href="account.php">My Account</a> |
+                    <a href="../account/account.php">My Account</a> |
                 <?php endif; ?>
                 <a href="logout.php">Logout</a>
             <?php else: ?>
@@ -149,7 +149,8 @@ if ($result === false) {
                         <div class="product-details">
                             <h3 class="product-name"><?php echo $row["name"]; ?></h3>
                             <p class="product-price">$<?php echo number_format($row["price"], 2); ?></p>
-                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="add-to-cart">
+                                <a href="../cart/add_item_to_cart.php?product_id=<?php echo $row['product_id']; ?>" class="add-to-cart">Add to Cart</a></button>
                         </div>
                     </div>
                 <?php endwhile; ?>
