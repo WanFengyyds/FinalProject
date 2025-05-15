@@ -266,9 +266,10 @@ $mysqli->close();
                         <span>$<?php echo number_format($total, 2); ?></span>
                     </div>
 
-                    <form action="checkout.php" method="post">
+                    <form action="checkout.php">
                         <button type="submit" class="checkout-btn">Proceed to Checkout</button>
                     </form>
+
                     <a href="../essential/essentials.php" class="continue-shopping">Continue Shopping</a>
                 </div>
             </div>
