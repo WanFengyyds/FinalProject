@@ -13,6 +13,8 @@ if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
+require_once('send_order_email.php');
+
 $user_id = $_SESSION['user_id'];
 
 // Get user's cart
@@ -85,34 +87,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $same_as_shipping = isset($_POST['same_as_shipping']) ? (bool)$_POST['same_as_shipping'] : true;
     $billing_address = $same_as_shipping ?
         $shipping_address['address'] : ($_POST['billing_address'] ?? '');
-    $payment_method = $_POST['payment_method'] ?? 'Credit Card';
+    $payment_method = $_POST['payment_method'] ?? 'Credit Card';    // Create order
+    $insert_order = "INSERT INTO orders (user_id, total_amount, status, shipping_address, billing_address, payment_method, order_date)
+                    VALUES ('$user_id', '$total', 'In elaborazione', '$shipping_address[address]', '$billing_address', '$payment_method', NOW())";
 
+    $mysqli->query($insert_order);
+    $order_id = $mysqli->insert_id;
 
-    // Create order
-    $insert_order = "INSERT INTO orders (user_id, total_amount, status, shipping_address, billing_address, payment_method)
-                    VALUES (?, ?, 'Processing', ?, ?, ?)";
-    $stmt = $mysqli->prepare($insert_order);
-
-    $stmt->bind_param("idsss", $user_id, $total, $shipping_address['address'], $billing_address, $payment_method);
-    $stmt->execute();
-    $order_id = $stmt->insert_id;
-    // Add order items
+    // Add order items and prepare items for email
+    $order_items_for_email = [];
     foreach ($cart_items as $item) {
         $price_to_use = $item['is_discounted'] ? $item['price'] : $item['original_price'];
         $insert_item = "INSERT INTO itemorder (order_id, product_id, quantity, price_at_time_of_purchase)
-                       VALUES (?, ?, ?, ?)";
-        $item_stmt = $mysqli->prepare($insert_item);
-        $item_stmt->bind_param("iiid", $order_id, $item['product_id'], $item['quantity'], $price_to_use);
-        $item_stmt->execute();
-        $item_stmt->close();
+                       VALUES ('$order_id', '{$item['product_id']}', '{$item['quantity']}', '$price_to_use')";
+        $mysqli->query($insert_item);
 
-        // Update product stock
-        $update_stock = "UPDATE product SET stock_quantity = stock_quantity - ? WHERE product_id = ?";
-        $stock_stmt = $mysqli->prepare($update_stock);
-        $stock_stmt->bind_param("ii", $item['quantity'], $item['product_id']);
-        $stock_stmt->execute();
-        $stock_stmt->close();
-    }
+        // Save item for email
+        $order_items_for_email[] = array(
+            'product_name' => $item['name'],
+            'quantity' => $item['quantity'],
+            'price_at_time_of_purchase' => $price_to_use
+        );        // Update product stock
+        $update_stock = "UPDATE product SET stock_quantity = stock_quantity - {$item['quantity']} WHERE product_id = {$item['product_id']}";
+        $mysqli->query($update_stock);
+    }    // Get user data for email
+    $user_query = "SELECT * FROM users WHERE user_id = '$user_id'";
+    $user_result = $mysqli->query($user_query);
+    $user = $user_result->fetch_assoc();
+
+    // Prepare order data for email
+    $order = array(
+        'order_id' => $order_id,
+        'order_date' => date('Y-m-d H:i:s'),
+        'shipping_address' => $shipping_address['address'],
+        'billing_address' => $billing_address,
+        'payment_method' => $payment_method,
+        'total_amount' => $total
+    );
+
+    // Send order confirmation email
+    sendOrderConfirmationEmail($order, $order_items_for_email, $user);
 
     // Clear cart
     $delete_cart_items = "DELETE FROM cart_items WHERE cart_id = $cart_id";
